@@ -1,0 +1,32 @@
+name: 'Prowler'
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Daily at 03:00 UTC
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write 
+  contents: read
+
+  jobs:
+  prowler-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/ProwlerScanRole
+          aws-region: ${{ var.AWS_REGION }}
+
+      - name: Prowler Scan
+      - uses: prowler-cloud/prowler@5.25
+        with:
+          provider: aws
+          output-formats: sarif
+          
