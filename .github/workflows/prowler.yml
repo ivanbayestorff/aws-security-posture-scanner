@@ -8,9 +8,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write 
+  id-token: write
   contents: read
-
+  security-events: write
+  actions: read 
 jobs:
   prowler-scan:
     runs-on: ubuntu-latest
@@ -29,4 +30,9 @@ jobs:
         with:
           provider: aws
           extra-env: AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_REGION AWS_DEFAULT_REGION
-          
+          output-formats: json-ocsf sarif
+          upload-sarif: "true"
+          flags: >-
+            --region ${{ vars.AWS_REGION }}
+            --compliance ${{ vars.PROWLER_COMPLIANCE }}
+
