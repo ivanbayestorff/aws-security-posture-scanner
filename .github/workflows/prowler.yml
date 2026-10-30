@@ -28,5 +28,4 @@ jobs:
         uses: prowler-cloud/prowler@v5.25
         with:
           provider: aws
-          output-formats: sarif
           
