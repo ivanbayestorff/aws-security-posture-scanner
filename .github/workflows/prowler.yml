@@ -10,8 +10,8 @@ on:
 permissions:
   id-token: write
   contents: read
-  security-events: write
-  actions: read 
+  actions: read
+
 jobs:
   prowler-scan:
     runs-on: ubuntu-latest
@@ -30,9 +30,9 @@ jobs:
         with:
           provider: aws
           extra-env: AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_REGION AWS_DEFAULT_REGION
-          output-formats: json-ocsf sarif
-          upload-sarif: "true"
+          output-formats: json-ocsf html
           flags: >-
             --region ${{ vars.AWS_REGION }}
             --compliance ${{ vars.PROWLER_COMPLIANCE }}
+            --output-bucket ${{ secrets.OUTPUT_BUCKET }}
 
