@@ -28,4 +28,5 @@ jobs:
         uses: prowler-cloud/prowler@v5.25
         with:
           provider: aws
+          extra-env: AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_REGION AWS_DEFAULT_REGION
           
