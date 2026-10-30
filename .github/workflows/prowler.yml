@@ -25,7 +25,7 @@ jobs:
             aws-region: ${{ vars.AWS_REGION }}
 
       - name: Prowler Scan
-        uses: prowler-cloud/prowler@5.25
+        uses: prowler-cloud/prowler@v5.25
         with:
           provider: aws
           output-formats: sarif
