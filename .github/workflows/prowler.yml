@@ -23,6 +23,8 @@ jobs:
             aws-region: ${{ vars.AWS_REGION }}
 
       - name: Run Prowler Scan
+        env:
+          PROWLER_COMPLIANCE: ${{ vars.PROWLER_COMPLIANCE }}
         run: |
           mkdir -p prowler-output
           docker run --rm \
