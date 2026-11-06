@@ -27,6 +27,7 @@ jobs:
           PROWLER_COMPLIANCE: ${{ vars.PROWLER_COMPLIANCE }}
         run: |
           mkdir -p prowler-output
+          chmod 777 prowler-output
           docker run --rm \
             -e AWS_ACCESS_KEY_ID \
             -e AWS_SECRET_ACCESS_KEY \
